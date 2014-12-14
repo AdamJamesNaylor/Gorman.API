@@ -1,0 +1,11 @@
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\AJN.Gorman.Domain.UnitTests.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\AJN.Gorman.Domain.UnitTests.pdb
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\AJN.Gorman.Domain.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\nunit.framework.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\EntityFramework.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\AJN.Gorman.Domain.pdb
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\nunit.framework.xml
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\EntityFramework.xml
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\obj\Debug\AJN.Gorman.Domain.UnitTests.csprojResolveAssemblyReference.cache
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\obj\Debug\AJN.Gorman.Domain.UnitTests.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\obj\Debug\AJN.Gorman.Domain.UnitTests.pdb
