@@ -31,9 +31,8 @@ namespace AJN.Gorman.API.UnitTests
         }
 
         [Test]
-        public void Post_WithUserCredentials_PassesUserIdToMapService()
-        {
-            
+        public void Post_WithUserCredentials_PassesUserIdToMapService() {
+
         }
 
         [TestFixtureSetUp]

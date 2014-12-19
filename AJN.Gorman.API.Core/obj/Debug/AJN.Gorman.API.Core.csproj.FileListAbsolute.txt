@@ -22,3 +22,7 @@ C:\Gorman\0.1\Development\AJN.Gorman.API.Core\bin\Debug\AJN.Gorman.Domain.pdb
 C:\Gorman\0.1\Development\AJN.Gorman.API.Core\bin\Debug\EntityFramework.xml
 C:\Gorman\0.1\Development\AJN.Gorman.API.Core\bin\Debug\EntityFramework.SqlServer.xml
 C:\Gorman\0.1\Development\AJN.Gorman.API.Core\obj\Debug\AJN.Gorman.API.Core.pdb
+C:\Gorman\0.1\Development\AJN.Gorman.API.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Gorman\0.1\Development\AJN.Gorman.API.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml

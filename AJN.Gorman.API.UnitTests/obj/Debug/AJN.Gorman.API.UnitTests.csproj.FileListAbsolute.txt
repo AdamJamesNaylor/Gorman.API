@@ -12,7 +12,6 @@ C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\System.Web.Http.dll
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\EntityFramework.dll
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\AutoMapper.dll
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Autofac.dll
-C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\System.Web.Http.WebHost.dll
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\AJN.Gorman.API.Core.pdb
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\AJN.Gorman.Domain.pdb
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\AJN.Gorman.API.pdb
@@ -24,7 +23,16 @@ C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\System.Web.Http.xml
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\EntityFramework.xml
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\AutoMapper.xml
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Autofac.xml
-C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\System.Web.Http.WebHost.xml
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\obj\Debug\AJN.Gorman.API.UnitTests.csprojResolveAssemblyReference.cache
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\obj\Debug\AJN.Gorman.API.UnitTests.dll
 C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\obj\Debug\AJN.Gorman.API.UnitTests.pdb
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\AutoMapper.Net4.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Owin.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Microsoft.Owin.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\System.Web.Http.Owin.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Microsoft.Owin.xml
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\System.Web.Http.Owin.xml
+C:\Gorman\0.1\Development\AJN.Gorman.API.UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.xml

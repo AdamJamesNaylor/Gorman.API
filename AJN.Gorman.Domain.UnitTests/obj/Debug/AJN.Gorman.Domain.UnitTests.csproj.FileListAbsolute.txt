@@ -9,3 +9,7 @@ C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\EntityFramework.
 C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\obj\Debug\AJN.Gorman.Domain.UnitTests.csprojResolveAssemblyReference.cache
 C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\obj\Debug\AJN.Gorman.Domain.UnitTests.dll
 C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\obj\Debug\AJN.Gorman.Domain.UnitTests.pdb
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Gorman\0.1\Development\AJN.Gorman.Domain.UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.xml

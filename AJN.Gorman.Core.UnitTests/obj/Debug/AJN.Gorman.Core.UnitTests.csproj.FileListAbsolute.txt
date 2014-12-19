@@ -16,3 +16,7 @@ C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\bin\Debug\nunit.framework.xm
 C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\obj\Debug\AJN.Gorman.Core.UnitTests.csprojResolveAssemblyReference.cache
 C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\obj\Debug\AJN.Gorman.Core.UnitTests.dll
 C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\obj\Debug\AJN.Gorman.Core.UnitTests.pdb
+C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Gorman\0.1\Development\AJN.Gorman.Core.UnitTests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
