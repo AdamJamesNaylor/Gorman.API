@@ -1,0 +1,2 @@
+.read init-db.sql
+.save data.db

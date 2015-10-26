@@ -4,10 +4,10 @@ namespace AJN.Gorman.Domain
 {
     public interface IEntitiesContext
     {
-        IDbSet<Map> Maps { get; set; }
-        IDbSet<Plan> Plans { get; set; }
-        IDbSet<Phase> Phases { get; set; }
-        IDbSet<Step> Steps { get; set; }
+        Microsoft.Data.Entity.DbSet<Map> Maps { get; set; }
+        Microsoft.Data.Entity.DbSet<Plan> Plans { get; set; }
+        Microsoft.Data.Entity.DbSet<Phase> Phases { get; set; }
+        Microsoft.Data.Entity.DbSet<Step> Steps { get; set; }
         int SaveChanges();
     }
 }
