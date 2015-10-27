@@ -29,5 +29,12 @@ namespace AJN.Gorman.API.Controllers
         }
 
         private readonly IMapService _mapService;
+
+        public IHttpActionResult Get(int id) {
+
+            var map = _mapService.Get(id);
+
+            return Ok(map);
+        }
     }
 }
