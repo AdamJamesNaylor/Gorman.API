@@ -1,6 +1,10 @@
 ﻿
 
 
+using System.Collections.Generic;
+using System.Data.Entity;
+using Moq.Language.Flow;
+
 namespace AJN.Gorman.Core.UnitTests
 {
     using System;
@@ -36,19 +40,44 @@ namespace AJN.Gorman.Core.UnitTests
 
         [Fact]
         public void Get_WithExistingId_ReturnsExistingMap() {
-            _fakeMapSet.Setup(s => s.First(It.IsAny<Expression<Func<Map, bool>>>())).Returns(new Map() {Id = 123});
+            var maps = new List<Map>
+            {
+                new Map { Id = 1 },
+                new Map { Id = 2 },
+                new Map { Id = 3 },
+                new Map { Id = 4 },
+                new Map { Id = 123 }
+            }.AsQueryable();
+
+            _fakeContext.Setup(c => c.Maps).ReturnsSet(maps);
             var map = _mapService.Get(123);
 
             Assert.Equal(123, map.Id);
         }
 
         [Fact]
-        public void Get_WithExistingId_ReturnsExistingMap2()
+        public void Get_WithNonexistantId_ReturnsNull()
         {
-            var map = _mapService.Get(123);
+            var emptySetOfMaps = new List<Map>().AsQueryable();
 
-            Assert.Equal(123, map.Id);
+            _fakeContext.Setup(c => c.Maps).ReturnsSet(emptySetOfMaps);
+
+            var nonExistantMapId = 123;
+            var map = _mapService.Get(nonExistantMapId);
+
+            Assert.Null(map);
         }
 
+    }
+
+    public static class ISetupExtensions {
+        public static IReturnsResult<IEntitiesContext> ReturnsSet<T>(this ISetup<IEntitiesContext, DbSet<T>> operand, IQueryable<T> set) where T : class {
+            var mapSet = new Mock<DbSet<T>>();
+            mapSet.As<IQueryable<T>>().Setup(m => m.Provider).Returns(set.Provider);
+            mapSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(set.Expression);
+            mapSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(set.ElementType);
+            mapSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(set.GetEnumerator());
+            return operand.Returns(mapSet.Object);
+        }
     }
 }

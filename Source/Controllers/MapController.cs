@@ -1,6 +1,4 @@
 ﻿
-using System.Web.Http.Results;
-
 namespace AJN.Gorman.API.Controllers
 {
     using Core.Services;
@@ -9,17 +7,15 @@ namespace AJN.Gorman.API.Controllers
 
     [RoutePrefix("maps")]
     public class MapController
-        : ApiController
-    {
-        public MapController(IMapService mapService)
-        {
+        : ApiController {
+
+        public MapController(IMapService mapService) {
             _mapService = mapService;
         }
 
         [Route("")]
         [HttpPost]
-        public IHttpActionResult Post(Map request)
-        {
+        private IHttpActionResult Post(Map request) {
             if (request == null)
                 return BadRequest();
 
@@ -28,13 +24,16 @@ namespace AJN.Gorman.API.Controllers
             return Ok();
         }
 
-        private readonly IMapService _mapService;
-
         public IHttpActionResult Get(int id) {
 
             var map = _mapService.Get(id);
 
+            if (map == null)
+                return NotFound();
+
             return Ok(map);
         }
+
+        private readonly IMapService _mapService;
     }
 }

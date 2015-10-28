@@ -6,6 +6,6 @@ namespace AJN.Gorman.Domain
     {
         public int Id { get; set; }
         public int MapId { get; set; }
-        public ICollection<Phase> Phases { get; set; }
+        public ICollection<Step> Steps{ get; set; }
     }
 }

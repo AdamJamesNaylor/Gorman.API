@@ -1,5 +1,8 @@
 ﻿
+using System.Linq;
 using System.Web.Http.Results;
+using Microsoft.Data.Entity;
+using Moq.Language.Flow;
 
 namespace AJN.Gorman.API.UnitTests
 {
@@ -37,10 +40,19 @@ namespace AJN.Gorman.API.UnitTests
 
         [Fact]
         public void Get_WithExistingId_ReturnsExistingMap() {
+            _fakeService.Setup(s => s.Get(123)).Returns(new Map() {Id = 123});
             var response = _mapController.Get(123);
+
             var result = Assert.IsType<OkNegotiatedContentResult<Map>>(response);
 
             Assert.Equal(123, result.Content.Id);
+        }
+
+        [Fact]
+        public void Get_WithNonexistantId_Returns404() {
+            var response = _mapController.Get(123);
+
+            Assert.IsType<NotFoundResult>(response);
         }
 
         public MapControllerTests()
@@ -49,4 +61,5 @@ namespace AJN.Gorman.API.UnitTests
             _mapController = new MapController(_fakeService.Object);
         }
     }
+   
 }

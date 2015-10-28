@@ -20,15 +20,7 @@ namespace AJN.Gorman.API.Core.Services
         }
 
         public IEnumerable<Phase> List(int planId) {
-            using (var ctx = new EntitiesContext())
-            {
-                var plan = ctx.Plans
-                    .Where(p => p.Id == planId)
-                    .Include(p => p.Phases.Select(x => x.Actions))
-                    .First();
-
-                    return plan.Phases;
-            }
+            return null;
         }
     }
 }

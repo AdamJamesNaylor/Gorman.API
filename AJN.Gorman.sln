@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJN.Gorman.API", "Source\AJN.Gorman.API.csproj", "{C2653801-5CFE-4C84-8D0E-76E6A300D882}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJN.Gorman.API.UnitTests", "AJN.Gorman.API.UnitTests\AJN.Gorman.API.UnitTests.csproj", "{08EA2C2B-B44C-4B36-B723-EB78542E2558}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJN.Gorman.Domain.UnitTests", "AJN.Gorman.Domain.UnitTests\AJN.Gorman.Domain.UnitTests.csproj", "{4E7B504E-3BC2-4D62-9D88-729531C3981A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ED07C69A-EAD9-4929-A5C3-EE300080CAD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,5 +50,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{61F93A17-3B7A-4158-9DA6-7A9DED8B9E36} = {ED07C69A-EAD9-4929-A5C3-EE300080CAD6}
+		{08EA2C2B-B44C-4B36-B723-EB78542E2558} = {ED07C69A-EAD9-4929-A5C3-EE300080CAD6}
+		{4E7B504E-3BC2-4D62-9D88-729531C3981A} = {ED07C69A-EAD9-4929-A5C3-EE300080CAD6}
 	EndGlobalSection
 EndGlobal

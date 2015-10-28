@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
+﻿
+using Xunit;
 
 namespace AJN.Gorman.Domain.UnitTests
 {
-    [TestFixture]
     public class MapTests
     {
-        [Test]
+        [Fact]
         public void Equals_WithEqualMap_ReturnsTrue()
         {
             Map x = new Map
@@ -18,10 +18,10 @@ namespace AJN.Gorman.Domain.UnitTests
 
             };
 
-            Assert.IsTrue(x.Equals(y));
+            Assert.True(x.Equals(y));
         }
 
-        [Test]
+        [Fact]
         public void Equals_WithInequalMap_ReturnsFalse()
         {
             Map x = new Map
@@ -34,7 +34,7 @@ namespace AJN.Gorman.Domain.UnitTests
                 Id = 456
             };
 
-            Assert.IsFalse(x.Equals(y));
+            Assert.False(x.Equals(y));
         }
 
 

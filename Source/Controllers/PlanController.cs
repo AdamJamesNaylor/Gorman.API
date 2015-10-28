@@ -17,9 +17,19 @@ namespace AJN.Gorman.API.Controllers
 
         [Route("")]
         [HttpPost]
-        public void Post(Plan request)
-        {
+        public IHttpActionResult Post(Plan request) {
             _planService.Add(request);
+
+            return Ok();
+        }
+
+        [Route("{id}")]
+        [HttpPut]
+        public IHttpActionResult Put(Plan request)
+        {
+            _planService.Update(request);
+
+            return Ok();
         }
 
         private readonly IPlanService _planService;

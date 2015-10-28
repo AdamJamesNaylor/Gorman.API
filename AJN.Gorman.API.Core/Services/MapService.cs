@@ -20,7 +20,7 @@ namespace AJN.Gorman.API.Core.Services
         private readonly IEntitiesContext _entitiesContext;
 
         public Map Get(int id) {
-            return _entitiesContext.Maps.First(m => m.Id == id);
+            return _entitiesContext.Maps.FirstOrDefault(m => m.Id == id);
         }
     }
 }
