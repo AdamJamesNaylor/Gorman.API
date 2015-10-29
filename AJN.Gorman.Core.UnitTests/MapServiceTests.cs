@@ -3,16 +3,14 @@
 
 using System.Collections.Generic;
 using System.Data.Entity;
+using AJN.Gorman.API.Core;
 using Moq.Language.Flow;
 
 namespace AJN.Gorman.Core.UnitTests
 {
-    using System;
     using System.Linq;
-    using System.Linq.Expressions;
     using API.Core.Services;
     using Domain;
-    using Microsoft.Data.Entity;
     using Moq;
     using Xunit;
 
@@ -34,7 +32,7 @@ namespace AJN.Gorman.Core.UnitTests
         {
             _mapService.Add(new Map());
 
-            _fakeMapSet.Verify(c => c.Add(It.IsAny<Map>(), GraphBehavior.IncludeDependents)); //have to include optional argument
+            _fakeMapSet.Verify(c => c.Add(It.IsAny<Map>())); //have to include optional argument
             _fakeContext.Verify(c=>c.SaveChanges());
         }
 

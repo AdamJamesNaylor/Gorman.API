@@ -15,7 +15,7 @@ namespace AJN.Gorman.API.Controllers
 
         [Route("")]
         [HttpPost]
-        private IHttpActionResult Post(Map request) {
+        public IHttpActionResult Post(Map request) {
             if (request == null)
                 return BadRequest();
 

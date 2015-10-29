@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework.Core">
       <HintPath>..\..\packages\EntityFramework.Core.7.0.0-beta8\lib\net45\EntityFramework.Core.dll</HintPath>
     </Reference>
@@ -41,9 +38,6 @@
     </Reference>
     <Reference Include="EntityFramework.Sqlite">
       <HintPath>..\..\packages\EntityFramework.Sqlite.7.0.0-beta8\lib\net45\EntityFramework.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Sqlite">
       <HintPath>..\..\packages\Microsoft.Data.Sqlite.1.0.0-beta8\lib\net45\Microsoft.Data.Sqlite.dll</HintPath>
@@ -60,8 +54,6 @@
   <ItemGroup>
     <Compile Include="Action.cs" />
     <Compile Include="ActionType.cs" />
-    <Compile Include="EntitiesContext.cs" />
-    <Compile Include="IEntitiesContext.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Phase.cs" />
     <Compile Include="PhaseListGetModel.cs" />
@@ -71,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
     <None Include="Plan.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

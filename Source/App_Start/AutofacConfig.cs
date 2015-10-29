@@ -1,5 +1,6 @@
 ﻿
 
+
 namespace AJN.Gorman.API
 {
     using System.Reflection;
@@ -8,7 +9,7 @@ namespace AJN.Gorman.API
     using Autofac.Integration.WebApi;
     using Controllers;
     using Core.Services;
-    using Domain;
+    using Core;
 
     public static class AutofacConfig
     {
@@ -16,18 +17,19 @@ namespace AJN.Gorman.API
         {
             var builder = new ContainerBuilder();
 
-            var config = GlobalConfiguration.Configuration;
+            Core.AutofacConfig.RegisterDependencies(builder);
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            builder.Register(c => new EntitiesContext()).As<IEntitiesContext>();
-
-            builder.Register(c => new PhaseService()).As<IPhaseService>();
+            builder.Register(c => new PlanService(c.Resolve<IEntitiesContext>())).As<IPlanService>();
             builder.Register(c => new MapService(c.Resolve<IEntitiesContext>())).As<IMapService>();
 
             builder.Register(c => new MapController(c.Resolve<IMapService>()));
+            builder.Register(c => new PlanController(c.Resolve<IPlanService>()));
 
             var container = builder.Build();
+
+            var config = GlobalConfiguration.Configuration;
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
     }

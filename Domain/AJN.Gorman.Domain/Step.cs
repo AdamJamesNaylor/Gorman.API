@@ -7,7 +7,5 @@ namespace AJN.Gorman.Domain
     {
         public int Id { get; set; }
         public int PlanId { get; set; }
-        public int Index { get; set; }
-        public ICollection<Action> Actions { get; set; }
     }
 }

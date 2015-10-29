@@ -1,11 +1,12 @@
 
-namespace AJN.Gorman.Core.UnitTests {
 
+namespace AJN.Gorman.Core.UnitTests {
+    using System.Data.Entity;
     using AJN.Gorman.API.Core.Services;
     using AJN.Gorman.Domain;
-    using Microsoft.Data.Entity;
     using Moq;
     using Xunit;
+    using AJN.Gorman.API.Core;
 
     public class PlanServiceTests {
 
@@ -18,8 +19,8 @@ namespace AJN.Gorman.Core.UnitTests {
 
         [Fact]
         public void Add_WithPlan_ReturnsCorrectId() {
-            _fakeSet.Setup(s => s.Add(It.IsAny<Plan>(), GraphBehavior.IncludeDependents))
-                .Callback<Plan, GraphBehavior>((p, x) => p.Id = 123);
+            _fakeSet.Setup(s => s.Add(It.IsAny<Plan>()))
+                .Callback<Plan>(p => p.Id = 123);
 
             var subject = new Plan();
             _service.Add(subject);
@@ -28,11 +29,11 @@ namespace AJN.Gorman.Core.UnitTests {
         }
 
         [Fact]
-        public void Update_WithPlan_AddsToSet() {
-            var subject = new Plan();
+        public void Update_WithPlan_UpdatesSetWithSuppliedPlan() {
+            var subject = new Plan { Id = 123 };
             _service.Update(subject);
 
-            Assert.Equal(123, subject.Id);
+            _fakeSet.Verify(s => s.Add(It.Is<Plan>(p => p.Id == 123)));
         }
 
         private readonly Mock<IEntitiesContext> _fakeContext;

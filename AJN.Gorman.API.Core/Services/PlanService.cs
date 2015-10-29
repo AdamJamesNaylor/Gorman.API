@@ -19,7 +19,8 @@ namespace AJN.Gorman.API.Core.Services
         }
 
         public void Update(Plan plan) {
-            
+            //_entitiesContext.TrackGraph(plan, node => node.Entry.State = EntityState.Added);
+            _entitiesContext.SaveChanges();
         }
 
         private readonly IEntitiesContext _entitiesContext;
