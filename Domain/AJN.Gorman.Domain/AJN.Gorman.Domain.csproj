@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Action.cs" />
     <Compile Include="ActionType.cs" />
+    <Compile Include="Activity.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Phase.cs" />
     <Compile Include="PhaseListGetModel.cs" />

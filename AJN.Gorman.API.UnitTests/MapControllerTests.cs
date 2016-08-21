@@ -6,6 +6,7 @@ using Moq.Language.Flow;
 
 namespace AJN.Gorman.API.UnitTests
 {
+    using System.Collections.Generic;
     using AJN.Gorman.API.Controllers;
     using AJN.Gorman.API.Core.Services;
     using AJN.Gorman.Domain;
@@ -59,6 +60,27 @@ namespace AJN.Gorman.API.UnitTests
         {
             _fakeService = new Mock<IMapService>();
             _mapController = new MapController(_fakeService.Object);
+
+            var map = new Map {
+                Id = 123,
+                Activities = new List<Activity> {
+                    new Activity {
+                        Id = 456,
+                        MapId = 123,
+                        Children = new List<Activity> {
+                            new Activity {
+                                Id = 789,
+                                Actions = new List<Action> {
+                                    new Action {
+                                        Id = 111,
+                                        Type = ActionType.Add
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
         }
     }
    

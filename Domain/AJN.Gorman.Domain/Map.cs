@@ -1,17 +1,21 @@
 ﻿
-using System;
 
-namespace AJN.Gorman.Domain
-{
-    public class Map : IEquatable<Map>
-    {
+namespace AJN.Gorman.Domain {
+    using System;
+    using System.Collections.Generic;
+
+    public class Map
+        : IEquatable<Map> {
+
         public int Id { get; set; }
+
         public string Name { get; set; }
         public string TileUrl { get; set; }
         public string Privacy { get; set; }
 
-        public int CompareTo(Map other)
-        {
+        public ICollection<Activity> Activities { get; set; }
+
+        public int CompareTo(Map other) {
             if (Id == other.Id &&
                 Name == other.Name &&
                 TileUrl == other.TileUrl &&
@@ -23,8 +27,7 @@ namespace AJN.Gorman.Domain
             return -1;
         }
 
-        public bool Equals(Map other)
-        {
+        public bool Equals(Map other) {
             return Id.Equals(other.Id) &&
                    string.Equals(Name, other.Name) &&
                    string.Equals(TileUrl, other.TileUrl) &&
