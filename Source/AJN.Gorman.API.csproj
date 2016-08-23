@@ -92,6 +92,7 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActorController.cs" />
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\PhaseController.cs" />
     <Compile Include="Controllers\PlanController.cs" />

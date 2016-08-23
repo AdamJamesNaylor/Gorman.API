@@ -5,16 +5,16 @@ namespace AJN.Gorman.API.Controllers {
     using Domain;
 
     [RoutePrefix("activities")]
-    public class ActivityController
+    public class ActorController
         : ApiController {
 
-        public ActivityController(IActivityService activityService) {
-            _activityService = activityService;
+        public ActorController(IActorService actorService) {
+            _activityService = actorService;
         }
 
         [Route("")]
         [HttpPost]
-        public IHttpActionResult Post(Activity request) {
+        public IHttpActionResult Post(Actor request) {
             if (request == null)
                 return BadRequest();
 

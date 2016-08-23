@@ -1,12 +1,7 @@
 ﻿
-using System.Linq;
-using System.Web.Http.Results;
-using Microsoft.Data.Entity;
-using Moq.Language.Flow;
 
-namespace AJN.Gorman.API.UnitTests
-{
-    using System.Collections.Generic;
+namespace AJN.Gorman.API.UnitTests {
+    using System.Web.Http.Results;
     using System.Collections.ObjectModel;
     using AJN.Gorman.API.Controllers;
     using AJN.Gorman.API.Core.Services;
@@ -14,31 +9,25 @@ namespace AJN.Gorman.API.UnitTests
     using Moq;
     using Xunit;
 
-    public class MapControllerTests
-    {
+    public class MapControllerTests {
         private Mock<IMapService> _fakeService;
         private MapController _mapController;
 
         [Fact]
-        public void Post_WithMap_PassesMapToService()
-        {          
-            _mapController.Post(new Map { Id = 123 });
+        public void Post_WithMap_PassesMapToService() {
+            _mapController.Post(new Map {Id = 123});
 
             _fakeService.Verify(s => s.Add(It.Is<Map>(m => m.Id == 123)));
         }
 
         [Fact]
-        public void Post_WithNull_ReturnsBadRequest()
-        {
+        public void Post_WithNull_ReturnsBadRequest() {
             var response = _mapController.Post(null);
             Assert.IsType<BadRequestResult>(response);
         }
 
         [Fact]
-        public void Post_WithUserCredentials_PassesUserIdToMapService()
-        {
-            
-        }
+        public void Post_WithUserCredentials_PassesUserIdToMapService() {}
 
         [Fact]
         public void Get_WithExistingId_ReturnsExistingMap() {
@@ -57,8 +46,7 @@ namespace AJN.Gorman.API.UnitTests
             Assert.IsType<NotFoundResult>(response);
         }
 
-        public MapControllerTests()
-        {
+        public MapControllerTests() {
             _fakeService = new Mock<IMapService>();
             _mapController = new MapController(_fakeService.Object);
 
@@ -69,7 +57,9 @@ namespace AJN.Gorman.API.UnitTests
                         Id = 456,
                         Actors = new Collection<Actor> {
                             new Actor {
-                                
+                                Id = 999,
+                                ActivityId = 456,
+                                ImageUrl = "http://something.com/something.gif"
                             }
                         },
                         MapId = 123,
@@ -90,5 +80,5 @@ namespace AJN.Gorman.API.UnitTests
             };
         }
     }
-   
+
 }
