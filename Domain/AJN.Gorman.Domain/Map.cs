@@ -2,7 +2,7 @@
 
 namespace AJN.Gorman.Domain {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     public class Map
         : IEquatable<Map> {
@@ -13,7 +13,11 @@ namespace AJN.Gorman.Domain {
         public string TileUrl { get; set; }
         public string Privacy { get; set; }
 
-        public ICollection<Activity> Activities { get; set; }
+        public Collection<Activity> Activities { get; set; }
+
+        public Map() {
+            Activities = new Collection<Activity>();
+        }
 
         public int CompareTo(Map other) {
             if (Id == other.Id &&

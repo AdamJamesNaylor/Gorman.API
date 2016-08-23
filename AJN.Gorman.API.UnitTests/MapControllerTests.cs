@@ -7,6 +7,7 @@ using Moq.Language.Flow;
 namespace AJN.Gorman.API.UnitTests
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using AJN.Gorman.API.Controllers;
     using AJN.Gorman.API.Core.Services;
     using AJN.Gorman.Domain;
@@ -63,17 +64,23 @@ namespace AJN.Gorman.API.UnitTests
 
             var map = new Map {
                 Id = 123,
-                Activities = new List<Activity> {
+                Activities = new Collection<Activity> {
                     new Activity {
                         Id = 456,
+                        Actors = new Collection<Actor> {
+                            new Actor {
+                                
+                            }
+                        },
                         MapId = 123,
-                        Children = new List<Activity> {
+                        Children = new Collection<Activity> {
                             new Activity {
                                 Id = 789,
-                                Actions = new List<Action> {
+                                Actions = new Collection<Action> {
                                     new Action {
                                         Id = 111,
-                                        Type = ActionType.Add
+                                        Type = ActionType.Add,
+                                        ActorId = 999
                                     }
                                 }
                             }
