@@ -9,7 +9,6 @@ namespace Gorman.API
     using Autofac.Integration.WebApi;
     using Controllers;
     using Core.Services;
-    using Core;
 
     public static class AutofacConfig
     {
@@ -21,9 +20,7 @@ namespace Gorman.API
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-
             builder.Register(c => new MapController(c.Resolve<IMapService>()));
-            builder.Register(c => new PlanController(c.Resolve<IPlanService>()));
 
             var container = builder.Build();
 

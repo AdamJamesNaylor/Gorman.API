@@ -7,11 +7,6 @@ namespace Gorman.API.Core.Services
     {
         public void Add(Step step)
         {
-            using (var ctx = new EntitiesContext())
-            {
-                ctx.Steps.Add(step);
-                ctx.SaveChanges();
-            }
         }
     }
 }

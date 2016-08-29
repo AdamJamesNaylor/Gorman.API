@@ -1,24 +1,30 @@
 ﻿
 namespace Gorman.API.Core.Services {
-    using System.Linq;
     using Domain;
+    using Repositories;
+
+    public interface IMapService {
+        void Add(Map map);
+        Map Get(int id);
+    }
 
     public class MapService
         : IMapService {
 
-        public MapService(IEntitiesContext entitiesContext) {
-            _entitiesContext = entitiesContext;
+        public MapService(IMapRepository repository) {
+            _repository = repository;
         }
 
         public void Add(Map map) {
-            _entitiesContext.Maps.Add(map);
-            _entitiesContext.SaveChanges();
+            //validate
+            _repository.Add(map);
         }
-
-        private readonly IEntitiesContext _entitiesContext;
 
         public Map Get(int id) {
-            return _entitiesContext.Maps.FirstOrDefault(m => m.Id == id);
+            //add url etc.
+            return _repository.Get(id);
         }
+
+        private readonly IMapRepository _repository;
     }
 }

@@ -6,6 +6,7 @@ namespace Gorman.API.Controllers {
     public class HomeController
         : ApiController {
 
+        [Route("")]
         public EndpointListResponse Get() {
             return new EndpointListResponse {
                 MapUrl = "/maps/{mapId}"
