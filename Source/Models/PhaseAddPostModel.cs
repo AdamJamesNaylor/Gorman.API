@@ -1,5 +1,5 @@
 ﻿
-namespace AJN.Gorman.API.Models
+namespace Gorman.API.Models
 {
     public class PhaseAddPostModel
     {

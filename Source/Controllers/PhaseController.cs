@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace AJN.Gorman.API.Controllers
+namespace Gorman.API.Controllers
 {
     using System.Web.Http;
     using System.Collections.Generic;

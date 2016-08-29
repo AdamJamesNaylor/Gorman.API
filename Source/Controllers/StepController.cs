@@ -1,9 +1,9 @@
 ﻿
-namespace AJN.Gorman.API.Controllers
+namespace Gorman.API.Controllers
 {
-    using AJN.Gorman.Domain;
     using System.Web.Http;
-    using AJN.Gorman.API.Core.Services;
+    using Core.Services;
+    using Domain;
 
     [RoutePrefix("steps")]
     public class StepController

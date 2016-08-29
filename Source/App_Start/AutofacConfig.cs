@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace AJN.Gorman.API
+namespace Gorman.API
 {
     using System.Reflection;
     using System.Web.Http;

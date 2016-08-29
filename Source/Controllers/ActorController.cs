@@ -1,5 +1,5 @@
 ﻿
-namespace AJN.Gorman.API.Controllers {
+namespace Gorman.API.Controllers {
     using Core.Services;
     using System.Web.Http;
     using Domain;
@@ -9,7 +9,7 @@ namespace AJN.Gorman.API.Controllers {
         : ApiController {
 
         public ActorController(IActorService actorService) {
-            _activityService = actorService;
+            _actorService = actorService;
         }
 
         [Route("")]
@@ -18,11 +18,11 @@ namespace AJN.Gorman.API.Controllers {
             if (request == null)
                 return BadRequest();
 
-            _activityService.Add(request);
+            _actorService.Add(request);
 
             return Ok();
         }
 
-        private readonly IActivityService _activityService;
+        private readonly IActorService _actorService;
     }
 }

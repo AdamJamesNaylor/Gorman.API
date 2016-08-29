@@ -1,5 +1,5 @@
 ﻿
-namespace AJN.Gorman.API.Controllers
+namespace Gorman.API.Controllers
 {
     using Core.Services;
     using System.Web.Http;

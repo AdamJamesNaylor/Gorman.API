@@ -1,5 +1,5 @@
 ﻿
-namespace AJN.Gorman.API.Models.Convertors
+namespace Gorman.API.Models.Convertors
 {
     using System.Collections.Generic;
     using Domain;

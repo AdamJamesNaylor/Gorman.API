@@ -1,11 +1,10 @@
 ﻿
-using AJN.Gorman.API.Core.Services;
-using AJN.Gorman.Domain;
-
-namespace AJN.Gorman.API.Controllers
+namespace Gorman.API.Controllers
 {
     using System.Web.Http;
-    
+    using Core.Services;
+    using Domain;
+
     [RoutePrefix("plans")]
     public class PlanController
         : ApiController

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿
+namespace Gorman.API {
+    using System.Web.Http;
 
-namespace AJN.Gorman.API
-{
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
+    public static class WebApiConfig {
+        public static void Register(HttpConfiguration config) {
             // Web API configuration and services
 
             // Web API routes
@@ -17,8 +12,8 @@ namespace AJN.Gorman.API
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
 
         }
     }

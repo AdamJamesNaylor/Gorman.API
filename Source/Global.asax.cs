@@ -1,5 +1,5 @@
 ﻿
-namespace AJN.Gorman.API
+namespace Gorman.API
 {
     using System.Web.Http;
 
