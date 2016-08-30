@@ -24,6 +24,8 @@ namespace Gorman.API.Controllers
             return Ok();
         }
 
+        [Route("{id}")]
+
         public IHttpActionResult Get(int id) {
 
             var map = _mapService.Get(id);

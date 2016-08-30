@@ -9,9 +9,13 @@ namespace Gorman.API.Core.Repositories {
 
     public class MapBuilder : IMapBuilder {
         public Map Build(SQLiteDataReader reader) {
-            return new Map {
-                Id = reader.GetInt32("Id")
-            };
+            Map result = null;
+            while (reader.Read()) {
+                result = new Map {
+                    Id = reader.GetInt32("Id")
+                };
+            }
+            return result;
         }
     }
 }

@@ -21,6 +21,8 @@
             if (IsInitialised)
                 return;
 
+            IsInitialised = false;
+
             if (!File.Exists(DatabaseFileName))
                 CreateDatabase(DatabaseFileName);
 
@@ -33,8 +35,7 @@
             using (var connection = new SQLiteConnection(ConnectionString)) {
                 connection.Open();
                 using (var command = connection.CreateCommand()) {
-                    var createDbCommand = File.ReadAllText("CreateDatabase.sql");
-                    command.CommandText = createDbCommand;
+                    command.CommandText = Resources.CreateDatabase;
                     command.ExecuteNonQuery();
                 }
                 connection.Close();
