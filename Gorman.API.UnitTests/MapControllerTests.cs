@@ -15,14 +15,14 @@ namespace Gorman.API.UnitTests {
 
         [Fact]
         public void Post_WithMap_PassesMapToService() {
-            _mapController.Post(new Map {Id = 123});
+            _mapController.Add(new Map {Id = 123});
 
             _fakeService.Verify(s => s.Add(It.Is<Map>(m => m.Id == 123)));
         }
 
         [Fact]
         public void Post_WithNull_ReturnsBadRequest() {
-            var response = _mapController.Post(null);
+            var response = _mapController.Add(null);
             Assert.IsType<BadRequestResult>(response);
         }
 
@@ -48,36 +48,36 @@ namespace Gorman.API.UnitTests {
 
         public MapControllerTests() {
             _fakeService = new Mock<IMapService>();
-            _mapController = new MapController(_fakeService.Object);
+            //_mapController = new MapController(_fakeService.Object);
 
-            var map = new Map {
-                Id = 123,
-                Activities = new Collection<Activity> {
-                    new Activity {
-                        Id = 456,
-                        Actors = new Collection<Actor> {
-                            new Actor {
-                                Id = 999,
-                                ActivityId = 456,
-                                ImageUrl = "http://something.com/something.gif"
-                            }
-                        },
-                        MapId = 123,
-                        Children = new Collection<Activity> {
-                            new Activity {
-                                Id = 789,
-                                Actions = new Collection<Action> {
-                                    new Action {
-                                        Id = 111,
-                                        Type = ActionType.Add,
-                                        ActorId = 999
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
+            //var map = new Map {
+            //    Id = 123,
+            //    Activities = new Collection<Activity> {
+            //        new Activity {
+            //            Id = 456,
+            //            Actors = new Collection<Actor> {
+            //                new Actor {
+            //                    Id = 999,
+            //                    ActivityId = 456,
+            //                    ImageUrl = "http://something.com/something.gif"
+            //                }
+            //            },
+            //            MapId = 123,
+            //            Children = new Collection<Activity> {
+            //                new Activity {
+            //                    Id = 789,
+            //                    Actions = new Collection<Action> {
+            //                        new Action {
+            //                            Id = 111,
+            //                            Type = ActionType.Add,
+            //                            ActorId = 999
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //};
         }
     }
 

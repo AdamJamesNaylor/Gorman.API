@@ -4,8 +4,8 @@ namespace Gorman.API.Core.Services {
     using Repositories;
 
     public interface IMapService {
-        void Add(Map map);
-        Map Get(int id);
+        Map Add(Map map);
+        Map Get(long id);
     }
 
     public class MapService
@@ -15,12 +15,12 @@ namespace Gorman.API.Core.Services {
             _repository = repository;
         }
 
-        public void Add(Map map) {
+        public Map Add(Map map) {
             //validate
-            _repository.Add(map);
+            return _repository.Add(map);
         }
 
-        public Map Get(int id) {
+        public Map Get(long id) {
             //add url etc.
             return _repository.Get(id);
         }

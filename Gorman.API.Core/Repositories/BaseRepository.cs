@@ -29,6 +29,13 @@
             IsInitialised = true;
         }
 
+        protected long GetLastInsertRowId(SQLiteConnection connection) {
+            using (var command = connection.CreateCommand()) {
+                command.CommandText = "SELECT last_insert_rowid()";
+                return (long)command.ExecuteScalar();
+            }
+        }
+
         private void CreateDatabase(string databaseFileName) {
             SQLiteConnection.CreateFile(databaseFileName);
 

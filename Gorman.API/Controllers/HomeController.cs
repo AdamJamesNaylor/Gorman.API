@@ -1,6 +1,7 @@
 ﻿
 namespace Gorman.API.Controllers {
     using System.Web.Http;
+    using Core.Builders;
     using Domain;
 
     public class HomeController
@@ -9,7 +10,10 @@ namespace Gorman.API.Controllers {
         [Route("")]
         public EndpointListResponse Get() {
             return new EndpointListResponse {
-                MapUrl = "/maps/{mapId}"
+                MapsUrl = MapBuilder.MapsUrl,
+                ActivitiesUrl = ActivityBuilder.ActivitiesUrl,
+                ActorsUrl = ActorBuilder.ActorsUrl,
+                ActionsUrl = ActionBuilder.ActionsUrl
             };
         }
     }

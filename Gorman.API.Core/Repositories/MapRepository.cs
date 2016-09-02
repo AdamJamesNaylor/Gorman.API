@@ -1,12 +1,12 @@
 ﻿
 namespace Gorman.API.Core.Repositories {
-    using System;
     using System.Data.SQLite;
+    using Builders;
     using Domain;
 
     public interface IMapRepository {
-        void Add(Map map);
-        Map Get(int id);
+        Map Add(Map map);
+        Map Get(long id);
     }
 
     public class MapRepository
@@ -16,7 +16,28 @@ namespace Gorman.API.Core.Repositories {
             _mapBuilder = mapBuilder;
         }
 
-        public Map Get(int id) {
+        public Map Add(Map map) {
+            Initialise();
+
+            using (var connection = new SQLiteConnection(ConnectionString)) {
+                Map result;
+                connection.Open();
+                using (var command = connection.CreateCommand()) {
+                    command.CommandText = "INSERT INTO Maps (Id) VALUES (NULL); SELECT last_insert_rowid()";
+                    //command.Parameters.Add(new SQLiteParameter("@id", map.Id));
+                    var rowId = command.ExecuteScalar();
+
+                    command.CommandText = "SELECT Id FROM Maps WHERE rowid = @rowId";
+                    command.Parameters.Add(new SQLiteParameter("@rowId", rowId));
+                    var id = (long) command.ExecuteScalar();
+                    result = Get(id);
+                }
+                connection.Close();
+                return result;
+            }
+        }
+
+        public Map Get(long id) {
             Initialise();
 
             using (var connection = new SQLiteConnection(ConnectionString)) {
@@ -35,29 +56,6 @@ namespace Gorman.API.Core.Repositories {
             }
         }
 
-        public void Add(Map map) {
-            Initialise();
-
-            using (var connection = new SQLiteConnection(ConnectionString)) {
-                connection.Open();
-                using (var command = connection.CreateCommand()) {
-                    command.CommandText = "INSERT INTO Maps (Id) VALUES (@id)";
-                    command.Parameters.Add(new SQLiteParameter("@id", map.Id));
-                    command.ExecuteNonQuery();
-                }
-                connection.Close();
-            }
-        }
-
         private readonly IMapBuilder _mapBuilder;
     }
-
-
-    public static class SqliteDataReaderExtensions {
-        public static int GetInt32(this SQLiteDataReader reader, string columnName) {
-            var ordinal = reader.GetOrdinal(columnName);
-            return reader.GetInt32(ordinal);
-        }
-    }
 }
-
