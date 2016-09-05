@@ -26,8 +26,11 @@
                 Actor result;
                 connection.Open();
                 using (var command = connection.CreateCommand()) {
-                    command.CommandText = "INSERT INTO Actors (MapId) VALUES (@mapId); SELECT last_insert_rowid()";
+                    command.CommandText = "INSERT INTO Actors (MapId, ImageUrl, PositionX, PositionY) VALUES (@mapId, @imageUrl, @positionX, @positionY); SELECT last_insert_rowid()";
                     command.Parameters.Add(new SQLiteParameter("@mapId", actor.MapId));
+                    command.Parameters.Add(new SQLiteParameter("@imageUrl", actor.ImageUrl));
+                    command.Parameters.Add(new SQLiteParameter("@positionX", actor.PositionX));
+                    command.Parameters.Add(new SQLiteParameter("@positionY", actor.PositionY));
                     var rowId = command.ExecuteScalar();
 
                     command.CommandText = "SELECT Id FROM Actors WHERE rowid = @rowId";

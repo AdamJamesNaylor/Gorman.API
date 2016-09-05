@@ -15,7 +15,10 @@ namespace Gorman.API.Core.Builders {
         public Actor Build(DbDataReader reader) {
             var result = new Actor {
                 Id = reader.GetInt64("Id"),
-                MapId = reader.GetInt64("MapId")
+                MapId = reader.GetInt64("MapId"),
+                ImageUrl = reader.GetString("ImageUrl"),
+                PositionX = reader.GetInt64("PositionX"),
+                PositionY = reader.GetInt64("PositionY")
             };
             result.Url = ActorsUrl.Replace(IdField, result.Id.ToString());
             return result;

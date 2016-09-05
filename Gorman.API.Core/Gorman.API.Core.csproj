@@ -40,7 +40,7 @@
     </Reference>
     <Reference Include="Gorman.API.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\Gorman.API.Domain\Debug\Gorman.API.Domain.dll</HintPath>
+      <HintPath>..\libs\Gorman.API.Domain\Gorman.API.Domain.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>

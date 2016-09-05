@@ -23,8 +23,8 @@ namespace Gorman.API.Core.Repositories {
                 Map result;
                 connection.Open();
                 using (var command = connection.CreateCommand()) {
-                    command.CommandText = "INSERT INTO Maps (Id) VALUES (NULL); SELECT last_insert_rowid()";
-                    //command.Parameters.Add(new SQLiteParameter("@id", map.Id));
+                    command.CommandText = "INSERT INTO Maps (TileUrl) VALUES (@tileUrl); SELECT last_insert_rowid()";
+                    command.Parameters.Add(new SQLiteParameter("@tileUrl", map.TileUrl));
                     var rowId = command.ExecuteScalar();
 
                     command.CommandText = "SELECT Id FROM Maps WHERE rowid = @rowId";

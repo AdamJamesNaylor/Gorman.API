@@ -19,7 +19,8 @@ namespace Gorman.API.Core.Builders {
             Map result = null;
             while (reader.Read()) {
                 result = new Map {
-                    Id = reader.GetInt64("Id")
+                    Id = reader.GetInt64("Id"),
+                    TileUrl = reader.GetString("TileUrl")
                 };
                 result.Url = MapsUrl.Replace(IdField, result.Id.ToString());
                 result.ActivitiesUrl = ActivitiesUrl.Replace(IdField, result.Id.ToString());
@@ -38,5 +39,11 @@ namespace Gorman.API.Core.Builders {
             var ordinal = reader.GetOrdinal(columnName);
             return reader.GetInt32(ordinal);
         }
+        public static string GetString(this DbDataReader reader, string columnName)
+        {
+            var ordinal = reader.GetOrdinal(columnName);
+            return reader.GetString(ordinal);
+        }
+
     }
 }
