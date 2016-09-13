@@ -8,14 +8,15 @@ namespace Gorman.API.Controllers {
         : ApiController {
 
         [Route("")]
-        public EndpointListResponse Get() {
-            return new EndpointListResponse {
-                MapsUrl = MapBuilder.MapsUrl,
-                ActivitiesUrl = ActivityBuilder.ActivitiesUrl,
-                ActorsUrl = ActorBuilder.ActorsUrl,
-                ActionsUrl = ActionBuilder.ActionsUrl
+        public Response<EndpointListResponse> Get() {
+            return new Response<EndpointListResponse> {
+                Data = new EndpointListResponse {
+                    MapsUrl = MapBuilder.MapsUrl,
+                    ActivitiesUrl = ActivityBuilder.ActivitiesUrl,
+                    ActorsUrl = ActorBuilder.ActorsUrl,
+                    ActionsUrl = ActionBuilder.ActionsUrl
+                }
             };
         }
     }
-
 }
