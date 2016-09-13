@@ -47,6 +47,8 @@ namespace Gorman.API.Core.Repositories {
                     command.CommandText = "SELECT * FROM Maps WHERE Id = @id";
                     command.Parameters.Add(new SQLiteParameter("@id", id));
                     using (var reader = command.ExecuteReader()) {
+                        if (!reader.HasRows)
+                            return null;
                         map = _mapBuilder.Build(reader);
                     }
                 }
