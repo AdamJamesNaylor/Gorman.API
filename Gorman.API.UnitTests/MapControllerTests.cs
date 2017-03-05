@@ -10,8 +10,19 @@ namespace Gorman.API.UnitTests {
     using Xunit;
 
     public class MapControllerTests {
-        private Mock<IMapService> _fakeService;
-        private MapController _mapController;
+        private readonly Mock<IMapService> _fakeService;
+        private readonly Mock<IActivityService> _fakeActivityService;
+        private readonly Mock<IActorService> _fakeActorService;
+        private readonly Mock<IActionService> _fakeActionService;
+        private readonly MapController _mapController;
+
+        public MapControllerTests() {
+            _fakeService = new Mock<IMapService>();
+            _fakeActivityService = new Mock<IActivityService>();
+            _fakeActorService = new Mock<IActorService>();
+            _fakeActionService = new Mock<IActionService>();
+            _mapController = new MapController(_fakeService.Object, _fakeActivityService.Object, _fakeActorService.Object, _fakeActionService.Object);
+        }
 
         [Fact]
         public void Post_WithMap_PassesMapToService() {
@@ -46,8 +57,6 @@ namespace Gorman.API.UnitTests {
             Assert.IsType<NotFoundResult>(response);
         }
 
-        public MapControllerTests() {
-            _fakeService = new Mock<IMapService>();
             //_mapController = new MapController(_fakeService.Object);
 
             //var map = new Map {
@@ -78,7 +87,6 @@ namespace Gorman.API.UnitTests {
             //        }
             //    }
             //};
-        }
     }
 
 }
