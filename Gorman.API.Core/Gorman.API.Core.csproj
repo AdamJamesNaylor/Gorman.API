@@ -89,13 +89,7 @@
     <Compile Include="Services\ActivityService.cs" />
     <Compile Include="Repositories\ActorRepository.cs" />
     <Compile Include="Services\ActorService.cs" />
-    <Compile Include="Services\IPhaseService.cs" />
-    <Compile Include="Services\IPlanService.cs" />
-    <Compile Include="Services\IStepService.cs" />
     <Compile Include="Services\MapService.cs" />
-    <Compile Include="Services\PhaseService.cs" />
-    <Compile Include="Services\PlanService.cs" />
-    <Compile Include="Services\StepService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

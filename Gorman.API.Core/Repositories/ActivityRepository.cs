@@ -2,6 +2,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Data.SQLite;
+    using System.Linq;
     using Builders;
     using Domain;
 
@@ -14,7 +15,8 @@
     public class ActivityRepository
         : BaseRepository, IActivityRepository {
 
-        public ActivityRepository(IActivityBuilder activityBuilder) {
+        public ActivityRepository(IActorRepository actorRepository, IActivityBuilder activityBuilder) {
+            _actorRepository = actorRepository;
             _activityBuilder = activityBuilder;
         }
 
@@ -25,8 +27,7 @@
                 Activity result;
                 connection.Open();
                 using (var command = connection.CreateCommand()) {
-                    command.CommandText =
-                        "INSERT INTO Activities (ParentId, MapId) VALUES (@ParentId, @MapId); SELECT last_insert_rowid()";
+                    command.CommandText = "INSERT INTO Activities (ParentId, MapId) VALUES (@ParentId, @MapId); SELECT last_insert_rowid()";
                     command.Parameters.Add(new SQLiteParameter("@ParentId", activity.ParentId));
                     command.Parameters.Add(new SQLiteParameter("@MapId", activity.MapId));
                     var rowId = command.ExecuteScalar();
@@ -35,11 +36,24 @@
                     command.Parameters.Add(new SQLiteParameter("@rowId", rowId));
                     var id = (long) command.ExecuteScalar();
                     result = Get(id);
+
+                    PersistActors(activity);
                 }
                 connection.Close();
                 return result;
             }
 
+        }
+
+        private void PersistActors(Activity activity) {
+            if (activity.Actors == null || !activity.Actors.Any())
+                return;
+
+            foreach (var actor in activity.Actors) {
+                actor.ActivityId = activity.Id;
+                var persistedActor = _actorRepository.Add(actor);
+                actor.Id = persistedActor.Id;
+            }
         }
 
         public Activity Get(long id) {
@@ -83,6 +97,7 @@
             }
         }
 
+        private readonly IActorRepository _actorRepository;
         private readonly IActivityBuilder _activityBuilder;
     }
 }

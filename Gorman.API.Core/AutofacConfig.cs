@@ -15,7 +15,7 @@ namespace Gorman.API.Core {
             builder.Register(c => new ActionBuilder()).As<IActionBuilder>();
 
             builder.Register(c => new MapRepository(c.Resolve<IMapBuilder>())).As<IMapRepository>();
-            builder.Register(c => new ActivityRepository(c.Resolve<IActivityBuilder>())).As<IActivityRepository>();
+            builder.Register(c => new ActivityRepository(c.Resolve<IActorRepository>(), c.Resolve<IActivityBuilder>())).As<IActivityRepository>();
             builder.Register(c => new ActorRepository(c.Resolve<IActorBuilder>())).As<IActorRepository>();
             builder.Register(c => new ActionRepository(c.Resolve<IActionBuilder>())).As<IActionRepository>();
 

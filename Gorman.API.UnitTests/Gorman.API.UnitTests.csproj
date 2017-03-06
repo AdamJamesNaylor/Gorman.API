@@ -39,9 +39,8 @@
       <HintPath>..\packages\EntityFramework.Core.7.0.0-beta8\lib\net45\EntityFramework.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Gorman.API.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\Gorman.API.Domain\Debug\Gorman.API.Domain.dll</HintPath>
+    <Reference Include="Gorman.API.Domain">
+      <HintPath>..\libs\Gorman.API.Domain\Gorman.API.Domain.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Framework.Caching.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Framework.Caching.Abstractions.1.0.0-beta8\lib\net45\Microsoft.Framework.Caching.Abstractions.dll</HintPath>
