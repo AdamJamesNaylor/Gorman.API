@@ -10,7 +10,7 @@ namespace Gorman.API.Core.Builders {
         : IActorBuilder {
 
         public const string IdField = "{actorId}";
-        public const string ActorsUrl = "/actors/" + IdField;
+        public const string ActorsUrl = ActivityBuilder.ActivitiesUrl + "/actors/" + IdField;
 
         public Actor Build(DbDataReader reader) {
             var result = new Actor {

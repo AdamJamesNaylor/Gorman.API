@@ -2,6 +2,7 @@
 namespace Gorman.API.Controllers {
     using System.Web.Http;
     using Core.Services;
+    using Domain;
 
     [RoutePrefix("actors")]
     public class ActorController
@@ -11,16 +12,29 @@ namespace Gorman.API.Controllers {
             _actorService = actorService;
         }
 
-        [Route("{id}")]
-        [HttpGet]
-        public IHttpActionResult Get(long id) {
-            var result = _actorService.Get(id);
+        //[Route("{id}")]
+        //[HttpGet]
+        //public IHttpActionResult Get(long id) {
+        //    var result = _actorService.Get(id);
 
-            if (result == null)
-                return NotFound();
+        //    if (result == null)
+        //        return NotFound();
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
+
+        //[Route("")]
+        //[HttpPost]
+        //public IHttpActionResult Add(Actor request)
+        //{
+        //    if (request == null)
+        //        return BadRequest();
+
+        //    var actor = _actorService.Add(request);
+
+        //    return Ok(actor);
+        //}
+
 
         private readonly IActorService _actorService;
     }

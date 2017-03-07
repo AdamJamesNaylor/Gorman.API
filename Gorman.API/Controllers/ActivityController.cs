@@ -13,9 +13,10 @@ namespace Gorman.API.Controllers {
     public class ActivityController
         : ApiController, IActivityController {
 
-        public ActivityController(IActivityService activityService, IActionService actionService) {
+        public ActivityController(IActivityService activityService, IActionService actionService, IActorService actorService) {
             _activityService = activityService;
             _actionService = actionService;
+            _actorService = actorService;
         }
 
         [Route("")]
@@ -56,7 +57,34 @@ namespace Gorman.API.Controllers {
             return Ok(result);
         }
 
+        [Route("{activityId}/actors/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetActor(long activityId, long id)
+        {
+            var result = _actorService.Get(id); //AND activityId == @activityId  ??
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+
+        [Route("{activityId}/actors")]
+        [HttpPost]
+        public IHttpActionResult AddActor(long activityId, Actor request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            request.ActivityId = activityId;
+            var actor = _actorService.Add(request);
+
+            return Ok(actor);
+        }
+
+
         private readonly IActivityService _activityService;
         private readonly IActionService _actionService;
+        private readonly IActorService _actorService;
     }
 }

@@ -17,7 +17,7 @@ namespace Gorman.API {
 
             builder.Register(c => new ActionController(c.Resolve<IActionService>()));
             builder.Register(c => new ActorController(c.Resolve<IActorService>()));
-            builder.Register(c => new ActivityController(c.Resolve<IActivityService>(), c.Resolve<IActionService>()));
+            builder.Register(c => new ActivityController(c.Resolve<IActivityService>(), c.Resolve<IActionService>(), c.Resolve<IActorService>()));
             builder.Register(
                 c =>
                     new MapController(c.Resolve<IMapService>(), c.Resolve<IActivityService>(),

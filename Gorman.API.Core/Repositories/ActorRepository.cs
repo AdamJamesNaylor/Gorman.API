@@ -27,7 +27,7 @@
                 connection.Open();
                 using (var command = connection.CreateCommand()) {
                     command.CommandText = "INSERT INTO Actors (ActivityId, ImageUrl, PositionX, PositionY) VALUES (@activityId, @imageUrl, @positionX, @positionY); SELECT last_insert_rowid()";
-                    command.Parameters.Add(new SQLiteParameter("@activityId", actor.MapId));
+                    command.Parameters.Add(new SQLiteParameter("@activityId", actor.ActivityId));
                     command.Parameters.Add(new SQLiteParameter("@imageUrl", actor.ImageUrl));
                     command.Parameters.Add(new SQLiteParameter("@positionX", actor.PositionX));
                     command.Parameters.Add(new SQLiteParameter("@positionY", actor.PositionY));

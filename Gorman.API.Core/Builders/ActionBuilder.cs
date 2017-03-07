@@ -9,7 +9,7 @@ namespace Gorman.API.Core.Builders {
     public class ActionBuilder
         : IActionBuilder {
         public const string IdField = "{actionId}";
-        public const string ActionsUrl = "/actions/" + IdField;
+        public const string ActionsUrl = ActivityBuilder.ActivitiesUrl + "/actions/" + IdField;
 
         public Action Build(DbDataReader reader) {
             var result = new Action {

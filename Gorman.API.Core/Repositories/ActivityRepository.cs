@@ -35,23 +35,11 @@
                     command.Parameters.Add(new SQLiteParameter("@rowId", rowId));
                     activity.Id = (long) command.ExecuteScalar();
 
-                    PersistActors(activity);
                 }
                 connection.Close();
                 return activity;
             }
 
-        }
-
-        private void PersistActors(Activity activity) {
-            if (activity.Actors == null || !activity.Actors.Any())
-                return;
-
-            foreach (var actor in activity.Actors) {
-                actor.ActivityId = activity.Id;
-                var persistedActor = _actorRepository.Add(actor);
-                actor.Id = persistedActor.Id;
-            }
         }
 
         public Activity Get(long id) {

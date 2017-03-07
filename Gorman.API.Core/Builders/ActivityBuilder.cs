@@ -11,7 +11,6 @@ namespace Gorman.API.Core.Builders {
 
         public const string IdField = "{activityId}";
         public const string ActivitiesUrl = "/activities/" + IdField;
-        public const string ActionsUrl = ActivitiesUrl + "/actions";
 
         public Activity Build(DbDataReader reader) {
             var result = new Activity {
@@ -20,7 +19,7 @@ namespace Gorman.API.Core.Builders {
                 MapId = reader.GetInt64("MapId")
             };
             result.Url = ActivitiesUrl.Replace(IdField, result.Id.ToString());
-            result.ActionsUrl = ActionsUrl.Replace(IdField, result.Id.ToString());
+            result.ActionsUrl = ActionBuilder.ActionsUrl.Replace(IdField, result.Id.ToString());
             result.MapUrl = MapBuilder.MapsUrl.Replace(MapBuilder.IdField, result.MapId.ToString());
             return result;
         }
