@@ -24,7 +24,6 @@
             Initialise();
 
             using (var connection = new SQLiteConnection(ConnectionString)) {
-                Activity result;
                 connection.Open();
                 using (var command = connection.CreateCommand()) {
                     command.CommandText = "INSERT INTO Activities (ParentId, MapId) VALUES (@ParentId, @MapId); SELECT last_insert_rowid()";
@@ -34,13 +33,12 @@
 
                     command.CommandText = "SELECT Id FROM Activities WHERE rowid = @rowId";
                     command.Parameters.Add(new SQLiteParameter("@rowId", rowId));
-                    var id = (long) command.ExecuteScalar();
-                    result = Get(id);
+                    activity.Id = (long) command.ExecuteScalar();
 
                     PersistActors(activity);
                 }
                 connection.Close();
-                return result;
+                return activity;
             }
 
         }

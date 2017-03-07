@@ -42,6 +42,8 @@ namespace Gorman.API.Core.Builders {
         public static string GetString(this DbDataReader reader, string columnName)
         {
             var ordinal = reader.GetOrdinal(columnName);
+            if (reader.IsDBNull(ordinal))
+                return null;
             return reader.GetString(ordinal);
         }
 
