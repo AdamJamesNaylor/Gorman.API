@@ -1,8 +1,10 @@
 ﻿
 namespace Gorman.API.Controllers {
+    using System;
     using Core.Services;
     using System.Web.Http;
     using Domain;
+    using Action = Domain.Action;
 
     [RoutePrefix("maps")]
     public class MapController
@@ -74,10 +76,11 @@ namespace Gorman.API.Controllers {
         [Route("{id}/actors")]
         [HttpPost]
         public IHttpActionResult AddActor(long id, Actor request) {
+            throw new NotImplementedException();
             if (request == null)
                 return BadRequest();
 
-            request.MapId = id;
+            //request.MapId = id;
             var actor = _actorService.Add(request);
 
             return Ok(actor);
