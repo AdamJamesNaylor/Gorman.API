@@ -1,7 +1,6 @@
 ﻿namespace Gorman.API.Core.Repositories {
+    using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Data.Common;
     using System.Data.SQLite;
     using Builders;
     using Domain;
@@ -9,7 +8,8 @@
     public interface IActorRepository {
         Actor Add(Actor actor);
         Actor Get(long id);
-        ReadOnlyCollection<Actor> List(long mapId);
+        List<Actor> List(long activityId);
+        List<ActorSummary> ListSummaries(long activityId);
     }
 
     public class ActorRepository
@@ -54,6 +54,8 @@
                     command.Parameters.Add(new SQLiteParameter("@id", id));
                     using (var reader = command.ExecuteReader()) {
                         reader.Read();
+                        if (!reader.HasRows)
+                            return null;
                         result = _actorBuilder.Build(reader);
                     }
                 }
@@ -63,24 +65,32 @@
             }
         }
 
-        public ReadOnlyCollection<Actor> List(long mapId) {
+        public List<Actor> List(long activityId) {
+            return List(activityId, _actorBuilder.Build);
+        }
+
+        public List<ActorSummary> ListSummaries(long activityId) {
+            return List(activityId, _actorBuilder.BuildSummary);
+        }
+
+        private List<T> List<T>(long activityId, Func<SQLiteDataReader, T> builder) {
             Initialise();
 
             using (var connection = new SQLiteConnection(ConnectionString)) {
-                var result = new List<Actor>();
+                var result = new List<T>();
                 connection.Open();
                 using (var command = connection.CreateCommand()) {
-                    command.CommandText = "SELECT * FROM Actors WHERE MapId = @id";
-                    command.Parameters.Add(new SQLiteParameter("@id", mapId));
+                    command.CommandText = "SELECT * FROM Actors WHERE ActivityId = @activityId";
+                    command.Parameters.Add(new SQLiteParameter("@activityId", activityId));
                     using (var reader = command.ExecuteReader()) {
                         while (reader.Read()) {
-                            result.Add(_actorBuilder.Build(reader));
+                            result.Add(builder(reader));
                         }
                     }
                 }
                 connection.Close();
 
-                return result.AsReadOnly();
+                return result;
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿namespace Gorman.API.Core.Repositories {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Data.SQLite;
@@ -9,14 +10,14 @@
     public interface IActivityRepository {
         Activity Add(Activity activity);
         Activity Get(long id);
-        ReadOnlyCollection<Activity> List(long mapId);
+        List<Activity> List(long parentActivityId);
+        List<ActivitySummary> ListSummaries(long parentActivityId);
     }
 
     public class ActivityRepository
         : BaseRepository, IActivityRepository {
 
-        public ActivityRepository(IActorRepository actorRepository, IActivityBuilder activityBuilder) {
-            _actorRepository = actorRepository;
+        public ActivityRepository(IActivityBuilder activityBuilder) {
             _activityBuilder = activityBuilder;
         }
 
@@ -62,28 +63,39 @@
             }
         }
 
-        public ReadOnlyCollection<Activity> List(long mapId) {
+        public List<Activity> List(long parentActivityId) {
+            return List(parentActivityId, _activityBuilder.Build);
+        }
+
+        public List<ActivitySummary> ListSummaries(long parentActivityId) {
+            return List(parentActivityId, _activityBuilder.BuildSummary);
+        }
+
+        private List<T> List<T>(long parentActivityId, Func<SQLiteDataReader, T> builder) {
             Initialise();
 
-            using (var connection = new SQLiteConnection(ConnectionString)) {
-                var result = new List<Activity>();
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                var result = new List<T>();
                 connection.Open();
-                using (var command = connection.CreateCommand()) {
-                    command.CommandText = "SELECT * FROM Activities WHERE MapId = @id";
-                    command.Parameters.Add(new SQLiteParameter("@id", mapId));
-                    using (var reader = command.ExecuteReader()) {
-                        while (reader.Read()) {
-                            result.Add(_activityBuilder.Build(reader));
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT * FROM Activities WHERE parentId = @parentActivityId";
+                    command.Parameters.Add(new SQLiteParameter("@parentActivityId", parentActivityId));
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result.Add(builder(reader));
                         }
                     }
                 }
                 connection.Close();
 
-                return result.AsReadOnly();
+                return result;
             }
         }
 
-        private readonly IActorRepository _actorRepository;
         private readonly IActivityBuilder _activityBuilder;
     }
 }

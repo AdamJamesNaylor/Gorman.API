@@ -1,34 +1,53 @@
 ﻿
 namespace Gorman.API.Core.Services {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using Domain;
     using Repositories;
 
     public interface IActionService {
         Action Add(Action request);
         Action Get(long id);
-        ReadOnlyCollection<Action> List(long activityId);
+        List<Action> List(long activityId);
+        List<ActionSummary> ListSummaries(long id);
     }
 
     public class ActionService
         : IActionService {
 
-        public ActionService(IActionRepository repository) {
+        public ActionService(IActionRepository repository, IActionParameterService actionParameterService) {
             _repository = repository;
+            _actionParameterService = actionParameterService;
         }
 
         public Action Add(Action request) {
-            return _repository.Add(request);
+            var action = _repository.Add(request);
+            foreach (var parameter in request.Parameters) {
+                parameter.ActionId = action.Id;
+                _actionParameterService.Add(parameter);
+            }
+            request.Id = action.Id;
+            return request;
         }
 
         public Action Get(long id) {
-            return _repository.Get(id);
+            var action = _repository.Get(id);
+            if (action == null)
+                return null;
+            action.Parameters = _actionParameterService.List(id);
+            return action;
         }
 
-        public ReadOnlyCollection<Action> List(long activityId) {
+        public List<Action> List(long activityId) {
             return _repository.List(activityId);
         }
 
+        public List<ActionSummary> ListSummaries(long activityId) {
+            return _repository.ListSummaries(activityId);
+        }
+
         private readonly IActionRepository _repository;
+        private readonly IActionParameterService _actionParameterService;
     }
 }

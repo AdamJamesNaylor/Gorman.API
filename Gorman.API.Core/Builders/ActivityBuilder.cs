@@ -4,6 +4,7 @@ namespace Gorman.API.Core.Builders {
 
     public interface IActivityBuilder {
         Activity Build(DbDataReader reader);
+        ActivitySummary BuildSummary(DbDataReader reader);
     }
 
     public class ActivityBuilder
@@ -20,8 +21,19 @@ namespace Gorman.API.Core.Builders {
             };
             result.Url = ActivitiesUrl.Replace(IdField, result.Id.ToString());
             result.ActionsUrl = ActionBuilder.ActionsUrl.Replace(IdField, result.Id.ToString());
+            result.ActivitiesUrl = ActivitiesUrl.Replace(IdField, result.Id.ToString()) + "/activities";
+            result.ActorsUrl = ActorBuilder.ActorsUrl.Replace(IdField, result.Id.ToString());
             result.MapUrl = MapBuilder.MapsUrl.Replace(MapBuilder.IdField, result.MapId.ToString());
             return result;
         }
+
+        public ActivitySummary BuildSummary(DbDataReader reader) {
+            var result = new ActivitySummary {
+                Id = reader.GetInt64("Id"),
+            };
+            result.Url = ActivitiesUrl.Replace(IdField, result.Id.ToString());
+            return result;
+        }
+
     }
 }

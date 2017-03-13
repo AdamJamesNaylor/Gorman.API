@@ -3,11 +3,15 @@ namespace Gorman.API.Controllers {
     using System.Web.Http;
     using Core.Builders;
     using Domain;
+    using Microsoft.Web.Http;
 
+    [ApiVersion("0.1")]
+    [RoutePrefix("v{version:apiVersion}")]
     public class HomeController
         : ApiController {
 
-        [Route("")]
+        [Route]
+        [HttpGet]
         public EndpointList Get() {
             return new EndpointList {
                     MapsUrl = MapBuilder.MapsUrl,

@@ -1,15 +1,17 @@
 ﻿
 namespace Gorman.API.Core.Repositories {
+    using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Data.SQLite;
     using Builders;
     using Domain;
+    using Action = Domain.Action;
 
     public interface IActionRepository {
         Action Add(Action action);
         Action Get(long id);
-        ReadOnlyCollection<Action> List(long activityId);
+        List<Action> List(long activityId);
+        List<ActionSummary> ListSummaries(long activityId);
     }
 
     public class ActionRepository
@@ -53,6 +55,9 @@ namespace Gorman.API.Core.Repositories {
                     command.Parameters.Add(new SQLiteParameter("@id", id));
                     using (var reader = command.ExecuteReader()) {
                         reader.Read();
+                        if (!reader.HasRows)
+                            return null;
+
                         result = _actionBuilder.Build(reader);
                     }
                 }
@@ -62,25 +67,38 @@ namespace Gorman.API.Core.Repositories {
             }
         }
 
-        public ReadOnlyCollection<Action> List(long activityId) {
+        public List<Action> List(long activityId) {
+            return List(activityId, _actionBuilder.Build);
+        }
+
+        public List<ActionSummary> ListSummaries(long activityId) {
+            return List(activityId, _actionBuilder.BuildSummary);
+        }
+
+        private List<T> List<T>(long activityId, Func<SQLiteDataReader, T> builder) {
             Initialise();
 
-            using (var connection = new SQLiteConnection(ConnectionString)) {
-                var result = new List<Action>();
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                var result = new List<T>();
                 connection.Open();
-                using (var command = connection.CreateCommand()) {
-                    command.CommandText = "SELECT * FROM Action WHERE ActivityId = @activityId";
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT * FROM Actions WHERE ActivityId = @activityId";
                     command.Parameters.Add(new SQLiteParameter("@activityId", activityId));
-                    using (var reader = command.ExecuteReader()) {
-                        while (reader.Read()) {
-                            result.Add(_actionBuilder.Build(reader));
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result.Add(builder(reader));
                         }
                     }
                 }
                 connection.Close();
 
-                return result.AsReadOnly();
+                return result;
             }
+
         }
 
         private readonly IActionBuilder _actionBuilder;
